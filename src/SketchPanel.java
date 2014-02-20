@@ -1,9 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
-/**
- *
- * @author Adam's room
- */
+
+//provides a space for the user to sketch on
+//and draws any polygons built by the polygon manager
 public class SketchPanel extends JPanel{
 
     public SketchPanel(){

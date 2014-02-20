@@ -10,6 +10,7 @@ public class PolygonFrame extends JFrame {
         PolygonFrame frame = new PolygonFrame(750,750);
     }
 
+	//construct and build the frame
     public PolygonFrame(int width, int height){
         setTitle("Polygon Sketcher");
         setSize(width , height);
@@ -17,12 +18,15 @@ public class PolygonFrame extends JFrame {
         addMenu();
         addSketchPanel();
 
+		//allow the interface to be resized
         JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT,
                                               sketchPanel, menu);
         splitPane.setOneTouchExpandable(true);
         splitPane.setDividerLocation(600);
         add(splitPane);
 
+		//the max distance between endpoints of lines to be connected
+		//together
         mergeDistance = 25;
 
         setVisible(true);
@@ -44,7 +48,9 @@ public class PolygonFrame extends JFrame {
 
         drawPolygon.setToolTipText("Press to convert a sketch into a polygon.");
         clearCanvas.setToolTipText("Press to clear the canvas of all polygons.");
-        
+
+        //takes user sketches and attempts to make them into a straight
+        //edged polygon
         class BuildListener implements ActionListener{
             public void actionPerformed(ActionEvent e){
                 Runnable builder = new PolygonBuilder(sketchPanel,mergeDistance);
@@ -78,7 +84,7 @@ public class PolygonFrame extends JFrame {
         mergeSlider.setToolTipText("Set the merge distance (pixels).Increasing this " +
                                    "value will reduce the number of sides on the polygon.");
         mergeSlider.setValue(25);
-        
+
         class MergeListener implements ChangeListener{
             public void stateChanged(ChangeEvent e){
                 setMergeDistance();
@@ -86,10 +92,11 @@ public class PolygonFrame extends JFrame {
         }
         mergeSlider.addChangeListener(new MergeListener());
         mergeOptions.add(mergeSlider);
-        
+
         menu.add(mergeOptions,"Center");
     }
 
+	//set the maximum distance between line endpoints using a slider
     private void setMergeDistance(){
         mergeDistance = mergeSlider.getValue();
     }
@@ -102,5 +109,5 @@ public class PolygonFrame extends JFrame {
     private JPanel menu;
     private JSlider mergeSlider;
     private int mergeDistance;
-    
+
 }

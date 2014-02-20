@@ -1,13 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 import javax.swing.*;
 import java.io.*;
-/**
- *
- * @author Adam's room
- */
+
+//enables the buildPolygon method to be run in a seperate thread
 public class PolygonBuilder implements Runnable {
 
     public PolygonBuilder(SketchPanel aPanel,int aMergeDistance){
